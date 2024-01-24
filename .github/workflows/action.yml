@@ -9,5 +9,3 @@ steps:
 
   - uses: chill-viking/npm-ci@latest
     name: Install dependencies
-    with:
-      working_directory: './npm-root-folder/'
