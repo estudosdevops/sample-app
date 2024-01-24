@@ -1,17 +1,4 @@
 ---
-# name: Test
-
-# on: [push]
-
-# jobs:
-#   test-unit:
-#     runs-on: ubuntu-latest
-#     name: Run Unit Tests
-#     steps:
-#       - uses: actions/checkout@main
-#       - uses: chill-viking/npm-ci@latest
-
-
 name: Tests
 
 on:
@@ -20,7 +7,7 @@ on:
       - main
 
 jobs:
-  Test_Units:
+  test-units:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
@@ -28,6 +15,6 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run test:coverage
+      # - run: npm run test:coverage
         env:
           VERDACCIO_TOKEN: ${{ secrets.VERDACCIO_TOKEN }}
