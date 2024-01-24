@@ -12,7 +12,7 @@
 #       - uses: chill-viking/npm-ci@latest
 
 
-name: Test
+name: Tests
 
 on:
   push:
@@ -20,7 +20,7 @@ on:
       - main
 
 jobs:
-  unit:
+  Test_Units:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
@@ -28,6 +28,6 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      # - run: npx semantic-release
+      - run: npm run test:coverage
         env:
           VERDACCIO_TOKEN: ${{ secrets.VERDACCIO_TOKEN }}
