@@ -3,9 +3,12 @@ name: Test
 
 on: [push]
 
-steps:
-  - uses: actions/checkout@main
-    name: Checkout repository
+runs:
+  using: "composite"
+  steps:
 
-  - uses: chill-viking/npm-ci@latest
-    name: Install dependencies
+    - name: Checkout repository
+      uses: actions/checkout@main
+
+    - name: Install dependencies
+      uses: chill-viking/npm-ci@latest
