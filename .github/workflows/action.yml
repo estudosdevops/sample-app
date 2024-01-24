@@ -5,8 +5,8 @@ on: [push]
 
 jobs:
   lint:
-    name: Test Unit
+    name: checkout
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@main
