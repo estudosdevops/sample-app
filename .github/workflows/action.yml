@@ -1,12 +1,33 @@
 ---
+# name: Test
+
+# on: [push]
+
+# jobs:
+#   test-unit:
+#     runs-on: ubuntu-latest
+#     name: Run Unit Tests
+#     steps:
+#       - uses: actions/checkout@main
+#       - uses: chill-viking/npm-ci@latest
+
+
 name: Test
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  test-unit:
+  unit:
     runs-on: ubuntu-latest
-    name: Run Unit Tests
     steps:
       - uses: actions/checkout@main
-      - uses: chill-viking/npm-ci@latest
+      - uses: actions/setup-node@main
+        with:
+          node-version: 18
+      - run: npm ci
+      # - run: npx semantic-release
+        env:
+          VERDACCIO_TOKEN: ${{ secrets.VERDACCIO_TOKEN }}
