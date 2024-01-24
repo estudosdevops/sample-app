@@ -3,10 +3,11 @@ name: Test
 
 on: [push]
 
-jobs:
-  lint:
-    name: checkout
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@main
+steps:
+  - uses: actions/checkout@main
+    name: Checkout repository
+
+  - uses: chill-viking/npm-ci@latest
+    name: Install dependencies
+    with:
+      working_directory: './npm-root-folder/'
