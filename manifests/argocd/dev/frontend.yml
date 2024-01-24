@@ -1,0 +1,74 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ARGOCD_POD_NAME | default(CI_PROJECT_NAME)}}
+  namespace: argocd
+  labels:
+    project: {{CI_PROJECT_NAME}}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: {{ARGOCD_APP_NAMESPACE | default(CI_PROJECT_NAME)}}
+    server: {{KUBEDEV}}
+
+  project: {{ARGOCD_PROJ_NAME | default(CI_PROJECT_NAME)}}-{{ENVIRONMENT}}
+  source:
+    path: manifests/charts/{{HELM_CHART_NAME}}
+    repoURL: {{CI_PROJECT_URL}}.git
+    targetRevision: {{CI_COMMIT_REF_NAME}}
+
+    # helm specific config
+    helm:
+      parameters:
+
+      # Release name override (defaults to application name)
+      releaseName: {{ARGOCD_POD_NAME | default(CI_PROJECT_NAME)}}
+
+      # Values file as block file
+      values: |
+        nameOverride: {{ARGOCD_POD_NAME | default(CI_PROJECT_NAME)}}
+        pods:
+          podLabels:
+            podname: {{ARGOCD_POD_NAME}}
+          image:
+            name: ghcr.io/benc-uk/nodejs-demoapp
+            tag: latest
+            pullPolicy: Always
+
+          # Affinity configuration
+          affinity:
+            rules:
+              nodeAffinity:
+                requiredDuringSchedulingIgnoredDuringExecution:
+                  nodeSelectorTerms:
+                  - matchExpressions:
+                    - key: stone.seguros/apps
+                      operator: In
+                      values:
+                      - stoneseguros
+
+          {%- if ARGOCD_APPLY_CONFIGMAPS == "true" %}
+          envFrom:
+            - configMapRef:
+                name: {{CI_PROJECT_NAME}}-common
+            - configMapRef:
+                name: {{CI_PROJECT_NAME}}-{{ENVIRONMENT}}
+          {%- endif %}
+
+          {%- if ARGOCD_APPLY_SECRETS == "true" %}
+            - secretRef:
+                name: {{CI_PROJECT_NAME}}-vault
+          {%- endif %}
+
+        {%- if ARGOCD_ENABLE_INGRESS == "true" %}
+        ingress:
+          enabled: false
+          hosts:
+            - {{ARGOCD_CUSTOM_SUBDOMAIN | default(CI_PROJECT_NAME)}}.{{ARGOCD_CUSTOM_DOMAIN | default(KUBE_INGRESS_BASE_DOMAIN)}}
+        {%- endif %}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

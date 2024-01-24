@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: {{ARGOCD_APP_NAMESPACE | default(CI_PROJECT_NAME)}}
+  name: {{CI_PROJECT_NAME}}-common
+data:
+  PORT: "80"
+  LOKI_HOST: "http://loki-distributed-gateway.monitoring.svc.cluster.local"

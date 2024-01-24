@@ -1,0 +1,30 @@
+---
+_format_version: "3.0"
+_info:
+  select_tags:
+    - manager-by-deck
+    - $CI_PROJECT_NAME
+services:
+  - connect_timeout: 60000
+    host: $ARGOCD_POD_NAME.$CI_PROJECT_NAME
+    name: $CI_PROJECT_NAME
+    path: /
+    port: 80
+    protocol: http
+    read_timeout: 60000
+    retries: 3
+    routes:
+      - https_redirect_status_code: 426
+        name: $CI_PROJECT_NAME
+        path_handling: v1
+        paths:
+          - /$CI_PROJECT_NAME/$ARGOCD_POD_NAME
+        preserve_host: false
+        protocols:
+          - http
+          - https
+        regex_priority: 0
+        request_buffering: true
+        response_buffering: true
+        strip_path: true
+    write_timeout: 60000

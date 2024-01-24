@@ -1,0 +1,79 @@
+---
+variables:
+  ARGOCD_PROJ_NAME: "sample-app-monitor"
+
+.only-on-code-changes: &only-code-changes
+  only:
+    changes:
+      - "monitor/**/*"
+
+.deploy:
+  stage: Deploy
+  <<: *only-code-changes
+  extends: .argocd
+
+Register image monitor:
+  stage: Registration
+  <<: *only-code-changes
+  extends: .kaniko_build
+  variables:
+    DOCKER_BUILD_ARGS: >-
+      --dockerfile=monitor/Dockerfile
+    CONTEXT: ./monitor/
+    IMAGE_NAME: monitor
+  only:
+   - develop
+   - staging
+   - tags
+
+monitor (dev):
+  extends: .deploy
+  variables:
+    ARGOCD_POD_NAME: "monitor"
+    ARGOCD_APP_NAME: "sample-app-monitor-dev"
+    ARGOCD_ENABLE_INGRESS: "true"
+    AUTO_DEVOPS_ENVIRONMENT_NAME: dev
+    ARGOCD_APP_DEV_YAML: manifests/argocd/dev/monitor.yml
+    KUBE_INGRESS_BASE_DOMAIN: ${AUTO_DEVOPS_ENVIRONMENT_NAME}.${AUTO_DEVOPS_BASE_DOMAIN}
+  environment:
+    name: ${AUTO_DEVOPS_ENVIRONMENT_NAME}
+    url: https://${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}
+  tags:
+    - kubedev
+  only:
+   - develop
+
+monitor (stg):
+  extends: .deploy
+  variables:
+    ARGOCD_POD_NAME: "monitor"
+    ARGOCD_APP_NAME: "sample-app-monitor-stg"
+    ARGOCD_ENABLE_INGRESS: "true"
+    AUTO_DEVOPS_ENVIRONMENT_NAME: stg
+    ARGOCD_APP_STG_YAML: manifests/argocd/stg/monitor.yml
+    KUBE_INGRESS_BASE_DOMAIN: ${AUTO_DEVOPS_ENVIRONMENT_NAME}.${AUTO_DEVOPS_BASE_DOMAIN}
+  environment:
+    name: ${AUTO_DEVOPS_ENVIRONMENT_NAME}
+    url: https://${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}
+  tags:
+    - kubestg
+  only:
+   - staging
+
+monitor (prod):
+  extends: .deploy
+  variables:
+    ARGOCD_POD_NAME: "monitor"
+    ARGOCD_APP_NAME: "sample-app-monitor-prod"
+    ARGOCD_ENABLE_INGRESS: "true"
+    AUTO_DEVOPS_ENVIRONMENT_NAME: prod
+    ARGOCD_APP_PROD_YAML: manifests/argocd/prod/monitor.yml
+    KUBE_INGRESS_BASE_DOMAIN: ${AUTO_DEVOPS_ENVIRONMENT_NAME}.${AUTO_DEVOPS_BASE_DOMAIN}
+  environment:
+    name: ${AUTO_DEVOPS_ENVIRONMENT_NAME}
+    url: https://${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}
+  tags:
+    - kubeprod
+  only:
+   - tags
+  when: manual

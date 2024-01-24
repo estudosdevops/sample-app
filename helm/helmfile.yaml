@@ -1,0 +1,18 @@
+---
+repositories:
+  - name: mvisonneau
+    url:  https://charts.visonneau.fr/
+
+commonLabels:
+  appname: sample-app
+
+releases:
+  - name: sample-app
+    namespace: sample-app
+    chart: mvisonneau/generic-app
+    version: 0.0.17
+    installed: true
+    labels:
+      app: sample-app
+    values:
+      - values/base.yaml.gotmpl

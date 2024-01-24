@@ -1,0 +1,32 @@
+---
+nameOverride: sample-app
+
+pods:
+  image:
+    name: ghcr.io/benc-uk/nodejs-demoapp
+    tag: latest
+
+  env:
+    - name: PORT
+      value: "80"
+
+service:
+  enabled: true
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+
+ingress:
+  enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+
+  path: /
+  pathType: Prefix
+
+  ingressClassName: "nginx"
+
+  hosts:
+    - sample-app.devops.seguros.vitta.com.br

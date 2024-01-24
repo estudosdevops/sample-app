@@ -1,0 +1,12 @@
+---
+name: Test
+
+on: [push]
+
+jobs:
+  lint:
+    name: Test Unit
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2

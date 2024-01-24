@@ -1,0 +1,14 @@
+{
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node",
+    "rootDir": "./",
+    "coverageThreshold": {
+      "global": {
+        "branches": 20,
+        "functions": 20,
+        "lines": 20,
+        "statments": 20
+      }
+    },
+    "clearMocks": true
+  }
