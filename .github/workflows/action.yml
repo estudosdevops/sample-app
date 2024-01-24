@@ -3,12 +3,12 @@ name: Test
 
 on: [push]
 
-runs:
-  using: "composite"
-  steps:
-
-  - name: Checkout repository
-    uses: actions/checkout@main
+jobs:
+  test-unit:
+    runs-on: ubuntu-latest
+    name: Run Unit Tests
+    steps:
+      - uses: actions/checkout@main
 
   # - name: Install dependencies
   #   uses: chill-viking/npm-ci@latest
