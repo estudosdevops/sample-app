@@ -1,5 +1,6 @@
 ---
-name: "Run Test Units"
+# .github/workflows/main.yml
+name: Node.js CI/CD
 
 on:
   push:
@@ -7,15 +8,39 @@ on:
       - main
 
 jobs:
-  Tests:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@main
-      - uses: actions/setup-node@main
-        with:
-          node-version: 18
-      - run: npm ci
-      # - run: npm run test:coverage
-      - run: echo "Fabio Coelho"
-        env:
-          VERDACCIO_TOKEN: ${{ secrets.VERDACCIO_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@main
+
+      # We just added another step and the relative path of the custom action
+      - name: Load & Cache Dependencies
+        uses: estudosdevops/actions/util-setup-node@main
+
+      - name: Run npm ci
+        run: npm ci
+
+      - name: Run Unit Tests
+        run: npm run test:coverage
+
+# name: "Run Unit Tests"
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   Unit-Tests:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@main
+#       - uses: actions/setup-node@main
+#         with:
+#           node-version: 18
+#       - run: npm ci
+#       # - run: npm run test:coverage
+#         env:
+#           VERDACCIO_TOKEN: ${{ secrets.VERDACCIO_TOKEN }}
