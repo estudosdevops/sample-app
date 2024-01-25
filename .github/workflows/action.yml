@@ -19,9 +19,6 @@ jobs:
       - name: Load & Cache Dependencies
         uses: estudosdevops/actions/util-setup-node@main
 
-      - name: Run npm ci
-        run: npm ci
-
       - name: Run Unit Tests
         run: npm run test:coverage
 
