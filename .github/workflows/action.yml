@@ -12,5 +12,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Tests
-      uses: ./actions/util-setup-node
+      - uses: actions/checkout@main
+      - uses: ./actions/util-setup-node@main
