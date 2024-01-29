@@ -9,7 +9,7 @@ runs:
   using: "composite"
 
   steps:
-    # - uses: actions/checkout@main
+    - uses: actions/checkout@main
     - uses: actions/setup-node@main
       with:
         cache: 'npm'
