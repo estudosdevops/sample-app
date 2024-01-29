@@ -19,7 +19,7 @@ jobs:
       - run: npm ci
         env:
           VERDACCIO_TOKEN: ${{ secrets.VERDACCIO_TOKEN }}
-      #   run: npm run test:coverage
+      - run: npm run test:coverage
 
       # - name: Checkout
       #   uses: actions/checkout@main
