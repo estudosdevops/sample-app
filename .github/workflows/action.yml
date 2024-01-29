@@ -13,4 +13,4 @@ jobs:
 
     steps:
     - name: Tests
-      uses: ./actions/util-setup-node@main
+      uses: ./actions/util-setup-node
