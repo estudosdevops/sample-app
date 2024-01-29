@@ -14,3 +14,5 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - uses: estudosdevops/actions/util-setup-node@main
+        with:
+          verdaccio_token: ${{ secrets.VERDACCIO_TOKEN }}
