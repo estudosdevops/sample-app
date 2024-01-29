@@ -17,6 +17,8 @@ jobs:
         with:
           cache: 'npm'
       - run: npm ci
+        env:
+          VERDACCIO_TOKEN: ${{ secrets.VERDACCIO_TOKEN }}
       #   run: npm run test:coverage
 
       # - name: Checkout
