@@ -16,13 +16,14 @@ jobs:
       - uses: actions/setup-node@main
         with:
           cache: 'npm'
-      - run: npm run test:coverage
+      - run: npm ci
         env:
           VERDACCIO_TOKEN: ${{ secrets.VERDACCIO_TOKEN }}
 
-      # - name: Run Tests
-      #   shell: bash
-      #   run: npm run test:coverage
+      - name: Run Tests
+        run: npm run test:coverage
+        env:
+          VERDACCIO_TOKEN: ${{ secrets.VERDACCIO_TOKEN }}
 
       # - name: Checkout
       #   uses: actions/checkout@main
