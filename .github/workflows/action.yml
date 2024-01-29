@@ -12,13 +12,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@main
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
+        with:
+          cache: 'npm'
+      - run: npm ci
+      #   run: npm run test:coverage
 
-      # We just added another step and the relative path of the custom action
-      - name: Load & Cache Dependencies
-        uses: estudosdevops/actions/util-setup-node@main
+      # - name: Checkout
+      #   uses: actions/checkout@main
 
-      - name: Run Unit Tests
-        run: npm run test:coverage
+      # # We just added another step and the relative path of the custom action
+      # - name: Load & Cache Dependencies
+      #   uses: estudosdevops/actions/util-setup-node@main
+
+      # - name: Run Unit Tests
+      #   run: npm run test:coverage
 
