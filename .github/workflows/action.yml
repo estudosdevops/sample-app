@@ -12,26 +12,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@main
-      - uses: actions/setup-node@main
-        with:
-          cache: 'npm'
-      - run: npm ci
-        env:
-          VERDACCIO_TOKEN: ${{ secrets.VERDACCIO_TOKEN }}
-
-      - name: Run Tests
-        run: npm run test:coverage
-        env:
-          VERDACCIO_TOKEN: ${{ secrets.VERDACCIO_TOKEN }}
-
-      # - name: Checkout
-      #   uses: actions/checkout@main
-
-      # # We just added another step and the relative path of the custom action
-      # - name: Load & Cache Dependencies
-      #   uses: estudosdevops/actions/util-setup-node@main
-
-      # - name: Run Unit Tests
-      #   run: npm run test:coverage
-
+    - name: Tests
+      uses: ./actions/util-setup-node@main
