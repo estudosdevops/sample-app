@@ -13,4 +13,4 @@ jobs:
 
     steps:
       - uses: actions/checkout@main
-      - uses: ./sample-app/actions/util-setup-node@main
+      - uses: estudosdevops/actions/util-setup-node@main
