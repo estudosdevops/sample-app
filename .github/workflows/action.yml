@@ -1,5 +1,4 @@
 ---
-# .github/workflows/main.yml
 name: Node.js CI/CD
 
 on:
@@ -12,7 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # - uses: actions/checkout@main
       - uses: estudosdevops/actions/util-setup-node@main
         with:
           verdaccio_token: ${{ secrets.VERDACCIO_TOKEN }}
+
+  sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
