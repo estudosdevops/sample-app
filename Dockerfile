@@ -1,4 +1,4 @@
-FROM $CI_REGISTRY/devops/docker/node:lts-alpine
+FROM node:lts-alpine3.19
 
 LABEL Name="Node.js Demo App" Version="4.7.2"
 LABEL org.opencontainers.image.source = "https://github.com/benc-uk/nodejs-demoapp"
