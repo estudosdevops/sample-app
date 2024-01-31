@@ -1,0 +1,24 @@
+---
+name: 😎 PreProd
+
+on:
+#   workflow_dispatch:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build-image:
+    name:  Build & Register image
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Use autodevops build and register
+        uses: SocialGouv/actions/autodevops-build-register@v1
+        with:
+          project: "sample-app"
+          imageName: sample-app/api
+          token: ${{ secrets.GITHUB_TOKEN }}
+          dockerbuildargs: |
+            NODE_ENV=production
+          environment: "preprod"
