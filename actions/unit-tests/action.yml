@@ -10,8 +10,8 @@ runs:
   using: "composite"
 
   steps:
-    - name: Checkout repository
-      uses: actions/checkout@main
+    # - name: Checkout repository
+    #   uses: actions/checkout@main
 
     - name: Node setup
       uses: actions/setup-node@main
