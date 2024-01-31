@@ -11,6 +11,8 @@ jobs:
     name:  Build & Register image
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@main
 
       - name: Use autodevops build and register
         uses: ./actions/build-image
