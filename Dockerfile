@@ -5,7 +5,6 @@ LABEL org.opencontainers.image.source = "https://github.com/benc-uk/nodejs-demoa
 
 ARG CI_REGISTRY
 ARG CI_SERVER_HOST
-ARG GITLAB_TOKEN
 ARG VERDACCIO_TOKEN
 
 ENV NODE_ENV production
