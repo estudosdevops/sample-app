@@ -21,4 +21,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           dockerbuildargs: |
             NODE_ENV=production
+            VERDACCIO_TOKEN=${{ secrets.VERDACCIO_TOKEN }}
           environment: "preprod"
