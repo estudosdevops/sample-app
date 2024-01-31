@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   tests:
@@ -31,24 +33,9 @@ jobs:
 
       - name: Run Scan
         uses: sonarsource/sonarqube-scan-action@master
-        with:
-          args: >
-            -Dsonar.projectKey="$GITHUB_REPOSITORY"
+        # with:
+        #   args: >
+        #     -Dsonar.projectKey="$GITHUB_REPOSITORY"
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
-  # build-image:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: SocialGouv/actions/autodevops-build-register@v1
-  #     with:
-  #       project: "sample-app"
-  #       imageName: sample-app/api
-  #       token: ${{ secrets.GITHUB_TOKEN }}
-
-  #       # dockerfile: "/path/to/Dockerfile" # optional
-  #       # dockercontext: "/path/to/content" # optional
-  #       # dockerbuildargs: | # optional
-  #       #   NODE_ENV=production
-  #       # environment: "preprod" # optional
