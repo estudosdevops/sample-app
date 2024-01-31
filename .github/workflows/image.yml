@@ -2,7 +2,6 @@
 name: 😎 PreProd
 
 on:
-#   workflow_dispatch:
   push:
     branches:
       - '**'
@@ -14,7 +13,7 @@ jobs:
     steps:
 
       - name: Use autodevops build and register
-        uses: SocialGouv/actions/autodevops-build-register@v1
+        uses: ./actions/build-image
         with:
           project: "sample-app"
           imageName: sample-app/api
