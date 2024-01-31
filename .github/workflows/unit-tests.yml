@@ -8,13 +8,14 @@ on:
 
 jobs:
   tests:
+    name: Unit Tests
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Run Tests
+      - name: Run tests
         uses: ./actions/unit-tests
         with:
           verdaccio_token: ${{ secrets.VERDACCIO_TOKEN }}
