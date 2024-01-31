@@ -8,10 +8,6 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
-concurrency:
-  cancel-in-progress: true
-  group: ${{ github.head_ref }}
-
 jobs:
   tests:
     name: Unit Tests
