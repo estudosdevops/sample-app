@@ -1,0 +1,26 @@
+---
+name: 😎 PreProd
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build-image:
+    name:  Build & Register image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@main
+
+      - name: Use autodevops build and register
+        uses: ./actions/build-image
+        with:
+          project: "sample-app"
+          imageName: sample-app/api
+          token: ${{ secrets.GITHUB_TOKEN }}
+          dockerbuildargs: |
+            NODE_ENV=productionz
+            VERDACCIO_TOKEN=${{ secrets.VERDACCIO_TOKEN }}
+          environment: "preprod"
