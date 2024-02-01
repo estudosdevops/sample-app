@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/estudosdevops/sample-app/compare/v1.0.3...v1.0.4) (2024-02-01)
+
+
+### Bug Fixes
+
+* remove on push ([eded0f3](https://github.com/estudosdevops/sample-app/commit/eded0f3532b5ebd50c1c19ab1118ae9bab927351))
+
 ## [1.0.3](https://github.com/estudosdevops/sample-app/compare/v1.0.2...v1.0.3) (2024-02-01)
 
 
