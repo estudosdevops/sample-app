@@ -21,6 +21,6 @@ jobs:
           imageName: sample-app/api
           token: ${{ secrets.GITHUB_TOKEN }}
           dockerbuildargs: |
-            NODE_ENV=production
+            NODE_ENV=productionz
             VERDACCIO_TOKEN=${{ secrets.VERDACCIO_TOKEN }}
           environment: "preprod"
