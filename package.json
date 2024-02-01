@@ -7,10 +7,6 @@
     "node": ">=14.0.0"
   },
 
-  "release": {
-      "branches": ["main", "next"]
-    },
-
   "license": "MIT",
   "private": true,
   "repository": {
