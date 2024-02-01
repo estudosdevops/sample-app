@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/estudosdevops/sample-app/compare/v1.0.1...v1.0.2) (2024-02-01)
+
+
+### Bug Fixes
+
+* remove version plugins ([cf61cea](https://github.com/estudosdevops/sample-app/commit/cf61ceac16d9eaa00c8de769fba53bf1f0f1a321))
+* remove version plugins ([17ac362](https://github.com/estudosdevops/sample-app/commit/17ac362844ec85c2061bca18c6739a85b7760216))
+* test release with releaserc file ([7465101](https://github.com/estudosdevops/sample-app/commit/746510120b281873014446ff6ab61bf64a77eb33))
+
 ## [1.0.1](https://github.com/estudosdevops/sample-app/compare/v1.0.0...v1.0.1) (2024-02-01)
 
 

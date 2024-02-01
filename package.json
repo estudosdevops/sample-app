@@ -1,12 +1,11 @@
 {
   "name": "@estudosdevops/sample-app",
   "description": "Simple Node.js Express app for demos",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Ben Coleman",
   "engines": {
     "node": ">=14.0.0"
   },
-
   "license": "MIT",
   "private": true,
   "repository": {
