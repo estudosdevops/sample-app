@@ -10,7 +10,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.hub.seguros.vitta.com.br/devops/sample-app.git"
+    "url": "git+https://github.com/estudosdevops/sample-app.git"
   },
   "scripts": {
     "start": "node --expose_gc server.js",
