@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/estudosdevops/sample-app/compare/v1.0.4...v1.0.5) (2024-02-01)
+
+
+### Bug Fixes
+
+* change action checkout version ([68f44f9](https://github.com/estudosdevops/sample-app/commit/68f44f92ababe0a4a788b7982d354748cc14c479))
+
 ## [1.0.4](https://github.com/estudosdevops/sample-app/compare/v1.0.3...v1.0.4) (2024-02-01)
 
 
