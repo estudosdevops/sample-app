@@ -3,8 +3,7 @@ name: 😎 PreProd
 
 on:
   push:
-    branches:
-      - '**'
+    branches: [master]
 
 jobs:
   build-image:
@@ -21,6 +20,6 @@ jobs:
           imageName: sample-app/api
           token: ${{ secrets.GITHUB_TOKEN }}
           dockerbuildargs: |
-            NODE_ENV=productionz
+            NODE_ENV=production
             VERDACCIO_TOKEN=${{ secrets.VERDACCIO_TOKEN }}
           environment: "preprod"
