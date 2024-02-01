@@ -1,7 +1,7 @@
 {
   "name": "@estudosdevops/sample-app",
   "description": "Simple Node.js Express app for demos",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Ben Coleman",
   "engines": {
     "node": ">=14.0.0"
